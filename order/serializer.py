@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 from rest_framework.serializers import ModelSerializer
 from .models import OrderProduct, Order, Address
 
@@ -41,6 +40,3 @@ class AddressSerializer(ModelSerializer):
 
 
 
-=======
-#
->>>>>>> 5b3ee4819a418d6f604816fe563dcf9c88bb9cab
