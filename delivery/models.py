@@ -53,7 +53,7 @@ class Delivery(models.Model):
     total_cost = models.DecimalField(max_digits=12, decimal_places=2, null=True, blank=True, )
 
     def str(self):
-        return f"Доставка #{self.pk} — {self.created_at:%Y-%m-%d}"
+        return f"Доставка {self.pk} — {self.created_at:%Y-%m-%d}"
 
 
 class DeliveryAddress(models.Model):
