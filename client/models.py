@@ -36,24 +36,6 @@ class Client(models.Model):
         return f"Клиент {self.user.username if self.user else self.pk}"
 
 
-class DeliveryGroup(models.Model):
-    group_id = models.CharField(max_length=100, blank=True)      
-    group_name = models.CharField(max_length=200)
-
-    def str(self):
-        return self.group_name or f"Группа {self.pk}"
-
-
-class Delivery(models.Model):
-    group = models.ForeignKey(DeliveryGroup, on_delete=models.SET_NULL, null=True, blank=True, related_name='deliveries')
-    
- 
-    wallet = models.DecimalField(max_digits=12, decimal_places=2, default=0)
-    orders_count = models.PositiveIntegerField(default=0)
-    working_status = models.CharField(max_length=50, default='new')
-
-    def str(self):
-        return f"Доставка {self.pk}"
 
 
 class Favorite(models.Model):
@@ -75,9 +57,29 @@ class Cart(models.Model):
         return f"Корзина {self.client} — {self.product_id} ×{self.quantity}"
 
 
+class DeliveryGroup(models.Model):
+    group_id = models.CharField(max_length=100, blank=True)
+    group_name = models.CharField(max_length=200)
+
+    def __str__(self):
+        return self.group_name
+
+
+class Delivery(models.Model):
+    wallet = models.DecimalField(max_digits=12, decimal_places=2, default=0)
+    orders_count = models.PositiveIntegerField(default=0)
+    working_status = models.CharField(max_length=50, default='new')
+    group = models.ForeignKey(DeliveryGroup, on_delete=models.SET_NULL, null=True, blank=True, related_name='deliveries')
+
+    def __str__(self):
+        return f"Delivery {self.id} - {self.working_status}"
+
+
 class Order(models.Model):
     client = models.ForeignKey(Client, on_delete=models.CASCADE, related_name='orders')
     delivery = models.ForeignKey(Delivery, on_delete=models.SET_NULL, null=True, blank=True, related_name='orders')
 
-    def str(self):
-        return f"Заказ {self.pk} — {self.client}"
+    def __str__(self):
+        return f"Order {self.id} for {self.client}"
+
+
