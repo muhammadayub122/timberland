@@ -1,5 +1,18 @@
-from django.urls import path
+from django.urls import path , include
+from . import views
+from rest_framework.routers import DefaultRouter
+
+
+router = DefaultRouter()
+router.register(r"delivery" , views.DeliveryModelViewSet)
+router.register(r"delivery" , views.DeliveryAddressModelViewSet)
+router.register(r"deliverymarketlog" , views.DeliveryMarketLogModelViewSet)
+router.register(r"deliverygroup" , views.DeliveryGroupModelViewSet)
+router.register(r"DeliveryWork" , views.DeliveryWorkModelViewSet)
+
 
 urlpatterns = [
-    # Add your delivery app URL patterns here
+    path("",include(router.urls))
 ]
+
+

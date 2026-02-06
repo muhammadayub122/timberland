@@ -17,7 +17,7 @@ class User(models.Model):
     user_name = models.CharField(max_length=155)
     age = models.PositiveIntegerField(default=1)
     phone_number = models.CharField(max_length=20)
-    image = models.ImageField(upload_to='user/')
+    image = models.ImageField(upload_to='user/',blank=True,null=True)
     address = models.CharField(max_length=255)
 
 

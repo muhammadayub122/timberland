@@ -1,5 +1,16 @@
-from django.urls import path
+from django.urls import path , include
+from . import views
+from rest_framework.routers import DefaultRouter
+
+
+router = DefaultRouter()
+router.register(r"product" , views.ProductModelViewSet)
+router.register(r"category" , views.CategoryModelViewSet)
+router.register(r"comboproduct" , views.ComboProductModelViewSet)
+
 
 urlpatterns = [
-    # Add your product app URL patterns here
+    path("",include(router.urls))
 ]
+
+
