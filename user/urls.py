@@ -1,5 +1,5 @@
 from django.urls import path
 
 urlpatterns = [
-    # Add your order app URL patterns here
+    # Add your user app URL patterns here
 ]
