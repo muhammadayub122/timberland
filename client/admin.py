@@ -22,7 +22,6 @@ admin.site.register(DeliveryGroup)
 admin.site.register(Delivery)
 
 
-admin.site.register(Order)
 
 
 admin.site.register(Cart)

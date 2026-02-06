@@ -20,4 +20,4 @@ class SellerAdmin(admin.ModelAdmin):
 class SellerWalletLogAdmin(admin.ModelAdmin):
     list_display = ('seller', 'amount', 'is_take', 'created_at')
     list_filter = ('is_take', 'created_at')
-    date_hierarchy = 'created_at'
+
