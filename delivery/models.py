@@ -4,7 +4,7 @@ from django.db import models
 from django.db import models
 from django.utils import timezone
 
-
+from user.models import User
 class DeliveryGroup(models.Model):
     
     name = models.CharField(max_length=100, )
@@ -31,7 +31,7 @@ class Delivery(models.Model):
     )
 
     user = models.ForeignKey(
-        'auth.User',  
+        User,  
         on_delete=models.SET_NULL,
         null=True,
         blank=True,
@@ -52,10 +52,7 @@ class Delivery(models.Model):
     options_cost = models.DecimalField(max_digits=12, decimal_places=2, default=0,)
     total_cost = models.DecimalField(max_digits=12, decimal_places=2, null=True, blank=True, )
 
-    def str(self):
-        return f"Доставка #{self.pk} — {self.created_at:%Y-%m-%d}"
-
-
+  
 class DeliveryAddress(models.Model):
    
     delivery = models.ForeignKey(
@@ -68,9 +65,7 @@ class DeliveryAddress(models.Model):
     longitude = models.FloatField(null=True, blank=True, )
     created_at = models.DateTimeField(auto_now_add=True)
 
-    class Meta:
-        verbose_name = "Адрес доставки"
-        verbose_name_plural = "Адреса доставки"
+
 
     def str(self):
         return self.address_name[:60]
@@ -98,6 +93,6 @@ class DeliveryMarketLog(models.Model):
         Delivery,
         on_delete=models.CASCADE,
     )
-    market = models.CharField(max_length=100, verbose_name="Маркетплейс")
+    market = models.CharField(max_length=100, )
 
     created_at = models.DateTimeField(auto_now_add=True)
