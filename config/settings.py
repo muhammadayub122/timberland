@@ -42,8 +42,8 @@ INSTALLED_APPS = [
     'order',
     'client',
     'celler',
-     'product',
-     'delivery'
+    'product',
+    'delivery'
    
 ]
 
