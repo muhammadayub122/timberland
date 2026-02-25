@@ -1,9 +1,17 @@
 from rest_framework.viewsets import ModelViewSet
-from .serializer import UserSarialiser
+from rest_framework.permissions import IsAuthenticated, AllowAny
 from .models import User
+from .serializer import UserSerializer
+# Create your views here.
 
 
-# Category list va create
-class UserModelViewSet(ModelViewSet):
+
+
+class UserViewSet(ModelViewSet):
+    serializer_class = UserSerializer
     queryset = User.objects.all()
-    serializer_class = UserSarialiser
+    
+    def get_permissions(self):
+        if self.action == 'create':
+            return [AllowAny()]  
+        return [IsAuthenticated()]  

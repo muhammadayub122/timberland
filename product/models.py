@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils import timezone
+from django.conf import settings
 
 
 # Create your models here.
@@ -19,12 +20,7 @@ class Category(models.Model):
 
 
 class Product(models.Model):
-    seller = models.ForeignKey(
-        "auth.User",  # Reference to Django's default User model
-        on_delete=models.SET_NULL,
-        null=True,
-        blank=True,
-    )
+    seller = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     name = models.CharField(max_length=300)
     category = models.ForeignKey(
         Category,
