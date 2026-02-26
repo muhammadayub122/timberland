@@ -24,6 +24,7 @@ class DeliveryWorkModelViewSet(ModelViewSet):
     queryset = DeliveryWork.objects.all()
     serializer_class = DeliveryWorkSerializer
 
+
 class DeliveryMarketLogModelViewSet(ModelViewSet):
     queryset = DeliveryMarketLog.objects.all()
-    serializer_class = DeliveryMarketLog
+    serializer_class = DeliveryMarketLogSerializer
