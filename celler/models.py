@@ -30,7 +30,7 @@ class SellerWalletLog(models.Model):
 
     
     description = models.CharField(max_length=255, blank=True) 
-    order = models.ForeignKey('client.Order', null=True, blank=True, on_delete=models.SET_NULL)
+    order = models.ForeignKey('client.Order'        , null=True, blank=True, on_delete=models.SET_NULL)
     transaction_type = models.CharField(
         max_length=50,
         choices=[
